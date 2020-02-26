@@ -1,0 +1,19 @@
+FROM python:3.7.4
+
+# Set environment variables
+ENV PYTHONUNBUFFERED 1
+
+COPY requirements.txt /
+
+RUN pip install --upgrade pip
+# Install dependencies.
+RUN pip install -r /requirements.txt
+
+# Set work directory.
+RUN mkdir /code-app4
+WORKDIR /code-app4
+
+# Copy project code-app4.
+COPY . /code-app4/
+
+EXPOSE 9900

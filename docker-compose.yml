@@ -1,0 +1,60 @@
+version: '3.7' 
+services: 
+    frontend-service:
+      build:
+        context: ./frontend
+        dockerfile: Dockerfile-frontend
+      image: angular:webapp4
+      container_name: webapp4-frontend
+      volumes:
+        - ./frontend:/usr/src/nodeapp4
+      ports: 
+        - "4200:4200"
+      entrypoint:
+        - ng
+        - serve
+        - --host
+        - 0.0.0.0
+      networks:
+        - networktier-app4
+      depends_on:
+        - backend-service
+      restart: always
+
+    backend-service:      
+      build:
+        context: ./backend
+        dockerfile: Dockerfile-backend
+      image: python:webapp4
+      container_name: webapp4-backend
+      command: python manage.py runserver 0.0.0.0:9900
+      volumes:
+        - ./backend:/code-app4
+      ports:
+        - "9900:9900"
+      networks:
+        - networktier-app4
+      restart: always
+
+    webserver-service:       
+      image: nginx:latest
+      container_name: webapp4-webserver
+      ports:
+        - "5555:6666"
+        - "7777:8888"
+      volumes:
+        - ./webserver/nginx-frontend.conf:/etc/nginx/conf.d/nginx-frontend.conf
+        - ./webserver/nginx-backend.conf:/etc/nginx/conf.d/nginx-backend.conf
+      networks:
+        - networktier-app4
+      depends_on:
+        - backend-service
+        - frontend-service
+      links:
+        - backend-service
+        - frontend-service
+      restart: always
+
+networks:
+  networktier-app4:
+    driver: bridge
