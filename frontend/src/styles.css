@@ -19,7 +19,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .toolbar-seprator{
     flex: 1 1 auto;
   }
-.product-search{
+.user-search{
   border: #ddd 1px solid;
   padding: 18px;
   margin: 18px 0px 12px 0px;
@@ -44,7 +44,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   table { margin: 0 auto;}
   .mat-form-field { width: 80%;}
-  #apiMessageBlock{ width:70%; text-align: left;margin: 0 auto; margin-bottom: 10%;}
+  #apiMessageBlock{ 
+    width:70%; 
+    text-align: left;
+    margin: 0 auto; 
+    margin-bottom: 10%;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: #ddd 1px solid;
+  }
 
   a,
   a:visited,

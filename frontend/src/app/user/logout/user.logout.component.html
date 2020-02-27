@@ -1,0 +1,6 @@
+<div *ngIf="isAuthenticated()">
+    <button mat-raised-button (click)="goLogout();">logout</button>
+</div>
+<div *ngIf="!isAuthenticated()">
+    <h2>User is now logged out.</h2>
+</div>

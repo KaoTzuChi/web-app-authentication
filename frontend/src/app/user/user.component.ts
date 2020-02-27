@@ -1,39 +1,37 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApimessageService } from './message/apimessage/apimessage.service';
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApimessageService } from '../message/apimessage/apimessage.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css'],
+  
 })
-export class AppComponent {
-  title = 'frontend';
+export class UserComponent implements OnInit {
+  currentuser: string = '';
 
   constructor(
     private apimessageService : ApimessageService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
-  ){
+  ) {  
 
   }
-  goHome(): void {
-    //this.apimessageService.clear();
-    this.router.navigate(["./home"]);
+
+  ngOnInit() {
+    document.getElementById('apiMessageBlock').style.display = 'block';
   }
+
 
   goLogin(): void {
     //this.apimessageService.clear();
     this.router.navigate(["./user/login"]);
   }
-
-  goLogout(): void {
+  goQuery(): void {
     //this.apimessageService.clear();
-    this.router.navigate(["./user/logout"]);
-  }
-
-  goUser(): void {
-    //this.apimessageService.clear();
-    this.router.navigate(["./user"]);
+    this.router.navigate(["./user/query"]);
   }
 
   isAuthenticated():boolean{
@@ -43,8 +41,11 @@ export class AppComponent {
     if( (token!=null) && (token!=undefined) && (token.length >4)
      && (name!=null) && (name!=undefined) && (name.length >0) ){
       isUserAuthenticated = true;
+      this.currentuser = name;
     }
     return isUserAuthenticated;
   }
 
 }
+
+

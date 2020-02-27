@@ -135,7 +135,7 @@
     <div class="card card-small" (click)="selection.value = 'build'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Build for Production</span>
+      <span>Build for Userion</span>
     </div>
   </div>
   -->
@@ -264,15 +264,14 @@
 
 <div class="toolbar" role="banner">
   &nbsp;&nbsp;
-  <button mat-button (click)="goHome()">{{ 'link.home' | translate }}</button>
- 
+  <button mat-button (click)="goHome();">home</button>
+  <button mat-button (click)="goUser();" *ngIf="isAuthenticated()">users</button>
+  
   <span class="toolbar-seprator"></span>
 
-  <div *ngFor="let lang of this.translate.getLangs()">
-    <button mat-button (click)="changelanguage( lang )">{{ this.localnames[lang] }}</button>
-    &nbsp;&#124;&nbsp;
-  </div>
-
+  <button mat-button (click)="goLogin();" *ngIf="!isAuthenticated()">login</button>
+  <button mat-button (click)="goLogout();" *ngIf="isAuthenticated()">logout</button>
+  &nbsp;&nbsp;
 </div>
 <div class="content" role="main">
   <router-outlet></router-outlet>

@@ -98,8 +98,8 @@ def account_create(request):
             )
             new_user.set_password( request.data.get("password") )
             new_user.email = request.data.get("email")               
-            new_user.is_superuser = request.data.get("is_superuser")
-            new_user.is_staff = request.data.get("is_staff")
+            new_user.is_superuser = chk_bool( request.data.get("is_superuser") )
+            new_user.is_staff = chk_bool( request.data.get("is_staff") )
             new_user.save()
 
             return_user = models.accountModel( 
@@ -140,8 +140,8 @@ def account_update(request):
             existing_user = User.objects.get( username = request.data.get("username") )
             existing_user.set_password( request.data.get("password") )
             existing_user.email = request.data.get("email")               
-            existing_user.is_superuser = request.data.get("is_superuser")
-            existing_user.is_staff = request.data.get("is_staff")
+            existing_user.is_superuser = chk_bool( request.data.get("is_superuser") )
+            existing_user.is_staff = chk_bool( request.data.get("is_staff") )
             existing_user.save()
 
             return_user = models.accountModel( 
@@ -278,6 +278,7 @@ e.g. http://localhost:9900/account_logout/
 request.data = { "username": "user1" }
 '''
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def account_logout(request):
     serialized = api_ser.accountSerializer(data = request.data)
     if serialized.is_valid():
@@ -298,5 +299,17 @@ def get_token( checking_user):
     try:
         return_string = checking_user.auth_token
     except:
-        return_string = None
+        return_string = 'not issued yet'
     return return_string
+
+def chk_bool ( data_item ):
+    return_value = False
+    try:
+        if (type(data_item) == bool):
+            return_value = data_item
+        elif (type(data_item) == str):
+            if (data_item.lower() == 'true'):
+                return_value = True
+    except:
+        return_value = False
+    return return_value

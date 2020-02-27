@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { ApimessageService } from '../message/apimessage/apimessage.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private translate: TranslateService,  
+    private apimessageService : ApimessageService,
   ) { }
   ngOnInit() {
-    console.log(this.translate.currentLang);
-    console.log(this.translate.getLangs());
-   }
+    document.getElementById('apiMessageBlock').style.display = 'none';
+    this.apimessageService.clear();
+  }
 }

@@ -1,0 +1,47 @@
+<div>
+    <h2>user&nbsp;:&nbsp;detail</h2>
+    <div *ngIf="user">
+        <mat-form-field>
+          <mat-placeholder>username&#40;string&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.username" [disabled]="true" />
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-placeholder>password&#40;string&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.password" [disabled]="true" />
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-placeholder>email&#40;string&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.email" [disabled]="true" />
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-placeholder>is_staff&#40;boolean&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.is_staff" [disabled]="true" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-placeholder>is_superuser&#40;boolean&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.is_superuser" [disabled]="true" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-placeholder>is_active&#40;boolean&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.is_active" [disabled]="true" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-placeholder>auth_token&#40;string&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.auth_token" [disabled]="true" />
+        </mat-form-field>
+  
+      </div>
+      <br /><mat-divider></mat-divider><br />
+    <div>
+      <button mat-raised-button (click)="deactivateUser();">deactivate</button>&nbsp;
+      <button mat-raised-button (click)="activateUser();">activate</button>&nbsp;
+      <button mat-raised-button (click)="goBack();">back</button>
+    </div>
+</div>   
+

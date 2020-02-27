@@ -1,4 +1,4 @@
-# Web app login and authentication by token: angular, python(django rest) and sqlite in docker
+# Web app authentication: angular, python(django) and sqlite in docker
 
 
 

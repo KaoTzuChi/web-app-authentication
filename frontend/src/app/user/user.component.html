@@ -1,0 +1,16 @@
+
+
+<div *ngIf="!isAuthenticated()">
+    <em>User is not logged in yet.</em>
+</div>
+
+<div *ngIf="isAuthenticated()">   
+    <em>User&nbsp;:&nbsp;{{ currentuser }} is authenticated.</em>&nbsp;&nbsp;
+    <button mat-raised-button (click)="goQuery();">query all users</button>
+    <br />
+    <br />
+</div>
+
+
+
+<router-outlet></router-outlet>

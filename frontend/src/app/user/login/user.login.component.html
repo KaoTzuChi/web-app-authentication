@@ -1,0 +1,21 @@
+
+<div *ngIf="!isAuthenticated()">
+    <h2>user&nbsp;:&nbsp;login</h2>
+    <div *ngIf="user">
+        <mat-form-field>
+          <mat-placeholder>username&#40;string&#41;</mat-placeholder>
+          <input matInput [(ngModel)]="user.username" [disabled]="false" />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-placeholder>password&#40;string&#41;</mat-placeholder>
+          <input type="password" matInput [(ngModel)]="user.password" [disabled]="false" />
+        </mat-form-field>
+ 
+      </div>
+      <br /><mat-divider></mat-divider><br />
+    <div>
+      <button mat-raised-button (click)="goLogin();">login</button>&nbsp;
+      <button mat-raised-button (click)="goHome();">home</button>
+    </div>
+</div>   

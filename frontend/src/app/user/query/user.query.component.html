@@ -1,0 +1,79 @@
+<div>
+    <h2>user&nbsp;:&nbsp;query</h2>
+    <div>
+      <table mat-table [dataSource]="users">
+        
+        <ng-container matColumnDef="radio">
+          <th mat-header-cell *matHeaderCellDef>select</th>
+          <td mat-cell *matCellDef="let user; let i = index; ">
+            <mat-radio-button name="user.username" value="user.username" (change)="onSelect(user);"  checked="{{i==0}}" ></mat-radio-button>           
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="serialno">
+          <th mat-header-cell *matHeaderCellDef>no.</th>
+          <td mat-cell *matCellDef="let user; let i = index;">&nbsp;{{i+1}}&nbsp;&nbsp;</td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>username</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ user.username }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="password">
+          <th mat-header-cell *matHeaderCellDef>password</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ ((user.password!=null) && (user.password!=undefined) && (user.password.length>4))?'******':'' }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>email</th>
+          <td mat-cell *matCellDef="let user">    
+            <p>{{ user.email }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="is_staff">
+          <th mat-header-cell *matHeaderCellDef>is_staff</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ user.is_staff }}</p>
+          </td>
+        </ng-container>  
+        
+        <ng-container matColumnDef="is_superuser">
+          <th mat-header-cell *matHeaderCellDef>is_superuser</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ user.is_superuser }}</p>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="is_active">
+          <th mat-header-cell *matHeaderCellDef>is_active</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ user.is_active }}</p>
+          </td>
+        </ng-container>  
+        
+        <ng-container matColumnDef="auth_token">
+          <th mat-header-cell *matHeaderCellDef>auth_token</th>
+          <td mat-cell *matCellDef="let user">
+            <p>{{ ((user.auth_token!=null) && (user.auth_token!=undefined) && (user.auth_token.length>20))?'issued':'' }}</p>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumn;"></tr>
+      </table>          
+    </div>
+    
+    <br />
+    <div>
+      <button mat-raised-button (click)="goInsert('user');">insert</button>&nbsp;
+      <!--<button mat-raised-button (click)="goMaintain('user','duplicate');">duplicate</button>&nbsp;-->
+      <button mat-raised-button (click)="goMaintain('user','edit');">edit</button>&nbsp;
+      <button mat-raised-button (click)="goMaintain('user','detail');">detail/delete</button>
+    </div>
+</div>   
